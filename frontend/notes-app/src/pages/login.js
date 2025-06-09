@@ -1,5 +1,6 @@
 import React , {useState} from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 export default function Login(){
     const [form, setForm] = useState({
         email: '',
@@ -7,7 +8,7 @@ export default function Login(){
     });
     const submit = async ()=>{
         try{
-            const res = await axios.post("http://localhost:5000/api/users/login", form);
+            const res = await axios.post($`{API_BASE_URL}/api/users/login`, form);
             localStorage.setItem("token", res.data.token);
             window.location.href = "/";
         }

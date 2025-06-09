@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { getAuthHeaders } from '../utils';
+import { API_BASE_URL } from '../config';
 
 export default function Notes() {
     const [notes, setNotes] = useState([]); // ✅ Corrected destructuring
@@ -12,19 +13,19 @@ export default function Notes() {
     const [editingId, setEditingId] = useState(null); // Track which note is being edited
 
     const fetchNotes = async () => {
-            const res = await axios.get("http://localhost:5000/api/notes", getAuthHeaders());
+            const res = await axios.get($`{API_BASE_URL}/api/notes`, getAuthHeaders());
             setNotes(res.data);
     };
 
     const addNote = async () => {
         if (!form.title || !form.content) return alert("Enter title and content");
-            await axios.post("http://localhost:5000/api/notes", form, getAuthHeaders());
+            await axios.post($`{API_BASE_URL}/api/notes`, form, getAuthHeaders());
             setForm({ title: '', content: '' });
             fetchNotes();
     };
 
     const deleteNote = async (id) => {
-            await axios.delete(`http://localhost:5000/api/notes/${id}`, getAuthHeaders()); 
+            await axios.delete($`{API_BASE_URL}/api/notes/${id}`, getAuthHeaders());
             fetchNotes();
     };
 
@@ -35,7 +36,7 @@ export default function Notes() {
 
     const updateNote = async (id) => {
         if (!form.title || !form.content) return alert("Enter title and content");
-        await axios.put(`http://localhost:5000/api/notes/${id}`, form, getAuthHeaders());
+        await axios.put($`{API_BASE_URL}/api/notes/${id}`, form, getAuthHeaders());
         setForm({ title: '', content: '' });
         setEditingId(null);
         fetchNotes();
