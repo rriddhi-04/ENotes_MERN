@@ -7,27 +7,22 @@ dotenv.config();
 
 const app = express();
 
-// CORS configuration
+// CORS configuration for production
 const corsOptions = {
-    origin: process.env.NODE_ENV === 'production'
-        ? [/\.onrender\.com$/, /\.render\.com$/] // Allow all onrender.com and render.com subdomains
-        : ['http://localhost:3000', 'http://127.0.0.1:3000'],
-    credentials: true
+  origin: process.env.FRONTEND_URL || '*',
+  credentials: true,
+  optionsSuccessStatus: 200
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
 
-// Health check endpoint
+// Basic route for health check
 app.get('/', (req, res) => {
-    res.json({ message: 'ENotes API is running!', status: 'healthy' });
+  res.json({ message: 'ENotes Backend API is running!' });
 });
 
-app.get('/api/health', (req, res) => {
-    res.json({ status: 'healthy', timestamp: new Date().toISOString() });
-});
-
-// routes
+// API routes
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/notes', require('./routes/noteRoutes'));
 
