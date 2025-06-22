@@ -2,6 +2,10 @@
 
 A beautiful, full-stack note-taking application built with the MERN stack. Create, edit, and organize your thoughts with a clean interface that features dark/light mode switching.
 
+## 🌐 Live Preview
+🔗 View Live Project
+https://enotes-frontend-er12.onrender.com/login
+
 ## ✨ Features
 
 - 🌙 **Dark/Light Mode** - System preference detection with manual toggle
