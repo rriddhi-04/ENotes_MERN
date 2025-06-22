@@ -4,7 +4,7 @@ A beautiful, full-stack note-taking application built with the MERN stack. Creat
 
 ## 🌐 Live Preview
 🔗 View Live Project
-https://enotes-frontend-er12.onrender.com/login
+https://enotes-frontend-er12.onrender.com
 
 ## ✨ Features
 
